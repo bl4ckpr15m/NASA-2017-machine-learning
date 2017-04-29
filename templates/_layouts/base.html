@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load custom_tags %}
+
+
+<html lang="es">
+	<head>
+		<meta charset="UTF-8"></meta>
+		<meta name="author" content="Jorge Chato"></meta>
+		{% block meta%}
+		<meta name="Description" content=""></meta>
+		<meta name="Keywords" content=""></meta>
+		{% endblock %}
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"></meta>
+		<meta name="theme-color" content="#D3367E"></meta>
+		<meta name="twitter:card" content="summary_large_image"></meta>
+		<meta name="twitter:title" content=""></meta>
+		<meta name="twitter:site" content=""></meta>
+		<meta name="twitter:creator" content=""></meta>
+		<meta name="twitter:description" content=""></meta>
+		{% block image%}
+		<meta name="twitter:image:src" content="{% static 'img/logo.jpg' %}"></meta>
+		{% endblock %}
+		<base href="/" target=""/>
+		<link rel="icon" href="{%  static 'img/favicon.png' %}">
+		<title>{% block title %}{{ "the great gatsvim" | upper }}{% endblock %}</title>
+		{% block head%}
+		<link rel="stylesheet" type="text/css" href="{% static 'style/base.css' %}">
+		<style>.background, .blur{background-image: url({% picture %});}</style>
+		{% endblock %}
+	</head>
+	<body class="{% block background %}{% endblock %}">
+		{% block content%}
+		{% endblock %}
+
+		<footer>
+			{% block footer%}
+			{% endblock %}
+		</footer>
+	</body>
+</html>

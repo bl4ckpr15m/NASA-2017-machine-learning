@@ -1,0 +1,17 @@
+{% extends "_layouts/base.html"  %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ headline | title }} - {{ block.super }}{% endblock %}
+
+{% block background %}background{% endblock %}
+
+{% block content %}
+<div class="inner-container">
+	<div class="blur"></div>
+	<div class="box">
+    <h1>{{ headline | title }}</h1>
+		{% crispy form %}
+	</div>
+</div>
+
+{% endblock %}
