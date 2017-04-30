@@ -72,7 +72,7 @@ class PictureViewSet(viewsets.ModelViewSet):
                     picture.score = self.resources[picture.label]['score']
                     picture.co2 = self.resources[picture.label]['co2']
                     picture.recyclable = self.resources[picture.label]['recyclable']
-                     
+
         picture.save()
         tk.MoveImages.delay(picture.pk)
         serializer = self.get_serializer(picture, many=False)
