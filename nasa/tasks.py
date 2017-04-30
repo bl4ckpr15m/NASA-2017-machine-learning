@@ -55,11 +55,11 @@ class MoveImages(Task):
         picture = models.Picture.objects.get(pk=pk)
 
         image_path = picture.feature.path
-        recyclable = picture.feature.recyclable
+        recyclable = picture.recyclable
 
         # Copy image to label'path
         if recyclable:
-            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable + picture.feature.label")
+            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable + picture.label")
 
 
 class ReTrain(Task):

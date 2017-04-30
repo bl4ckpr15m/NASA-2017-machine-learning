@@ -5,22 +5,24 @@ from django.utils.crypto import get_random_string
 from ai.models import Picture
 from nasa.serializers import PictureSerializer
 from nasa import tasks as tk
+import tensorflow as tf
+from nasa.settings import BASE_DIR
 
 
 class PictureViewSet(viewsets.ModelViewSet):
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
     resources = {
-                "alumunium":
-                    {"score": "31", "co2": "5.1", "recyclable": "true"},
-                "box":
-                    {"score": "6", "co2": "0.9", "recyclable": "true"},
+                "plastic":
+                    {"score": 31, "co2": 5.1, "recyclable": True},
+                "carton":
+                    {"score": 6, "co2": 0.9, "recyclable": True},
                 "can":
-                    {"score": "20", "co2": "4.3", "recyclable": "true"},
+                    {"score": 20, "co2": 4.3, "recyclable": True},
                 "glass":
-                    {"score": "8", "co2": "1.2", "recyclable": "true"},
+                    {"score": 8, "co2": 1.2, "recyclable": True},
                 "not recyclable":
-                    {"score": "0", "co2": "0", "recyclable": "false"}
+                    {"score": 0, "co2": 0, "recyclable": False}
                 }
 
     def get(self, request):
@@ -34,9 +36,8 @@ class PictureViewSet(viewsets.ModelViewSet):
         file_name = "{}.jpg".format(get_random_string(length=10))
         picture.feature.save(file_name, f, save=True)
 
-        # tk.PredictTask.delay(picture.pk)
-
         image_path = picture.feature.path
+        print(image_path)
 
         # Read in the image_data
         image_data = tf.gfile.FastGFile(image_path, 'rb').read()
@@ -70,9 +71,9 @@ class PictureViewSet(viewsets.ModelViewSet):
 
         picture.label = max_human_string
 
-        picture.score = self.resources[picture.label][score]
-        picture.co2 = self.resources[picture.label][co2]
-        picture.recyclable = self.resources[picture.label][recyclable]
+        picture.score = self.resources[picture.label]['score']
+        picture.co2 = self.resources[picture.label]['co2']
+        picture.recyclable = self.resources[picture.label]['recyclable']
 
         picture.save()
         tk.MoveImages.delay(picture.pk)
