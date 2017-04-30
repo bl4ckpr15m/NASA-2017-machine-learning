@@ -69,13 +69,13 @@ class PictureViewSet(viewsets.ModelViewSet):
                     max_score = score
                     max_human_string = human_string
 
-        picture.label = max_human_string
-
-        picture.score = self.resources[picture.label]['score']
-        picture.co2 = self.resources[picture.label]['co2']
-        picture.recyclable = self.resources[picture.label]['recyclable']
+        if(max_score >= .60):
+            picture.label = max_human_string
+            picture.score = self.resources[picture.label]['score']
+            picture.co2 = self.resources[picture.label]['co2']
+            picture.recyclable = self.resources[picture.label]['recyclable']
 
         picture.save()
-        # tk.MoveImages.delay(picture.pk)
+        tk.MoveImages.delay(picture.pk)
         serializer = self.get_serializer(picture, many=False)
         return Response(serializer.data)

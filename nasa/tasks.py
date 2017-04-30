@@ -17,22 +17,24 @@ class MoveImages(Task):
         image_path = picture.feature.path
         recyclable = picture.recyclable
 
+        ind = image_path.rfind('/')
+        name = image_path[ind+1:]
+        # name = os.path.basename(image_path.picture.name)
         # Copy image to label'path
         if recyclable:
-            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable + picture.label")
-
+            os.system("cp " + image_path + " " + BASE_DIR + "/media/tf_files/recyclable/" + picture.label +"/" + name)
 
 class ReTrain(Task):
     def run(self):
-        # Necessary, execute docker run --name what-i-want -it ......
+        # Necessary, execute docker run --name what-i-want -it
         name = "nasatf"
-        comm = "python /tensorflow/tensorflow/examples/image_retraining/retrain.py \
-        --bottleneck_dir=/tf_files/bottlenecks \
+        comm = "python/tensorflow/tensorflow/examples/image_retraining/retrain.py\
+        --bottleneck_dir=/tf_files/bottlenecks\
         --how_many_training_steps 500 \
-        --model_dir=/tf_files/inception \
-        --output_graph=/tf_files/retrained_graph.pb \
-        --output_labels=/tf_files/retrained_labels.txt \
-        --image_dir /tf_files/recyclable"
+        --model_dir=/tf_files/inception\
+        --output_graph=/tf_files/retrained_graph.pb\
+        --output_labels=/tf_files/retrained_labels.txt\
+        --image_dir/tf_files/recyclable"
         os.system("docker exec -it " + name + " " + comm)
 
 
