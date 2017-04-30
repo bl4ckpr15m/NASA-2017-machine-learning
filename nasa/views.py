@@ -14,13 +14,13 @@ class PictureViewSet(viewsets.ModelViewSet):
     serializer_class = PictureSerializer
     resources = {
                 "plastic":
-                    {"score": 31, "co2": 5.1, "recyclable": True},
-                "carton":
-                    {"score": 6, "co2": 0.9, "recyclable": True},
-                "can":
                     {"score": 20, "co2": 4.3, "recyclable": True},
+                "carton":
+                    {"score": 8, "co2": 0.9, "recyclable": True},
+                "can":
+                    {"score": 11, "co2": 5.1, "recyclable": True},
                 "glass":
-                    {"score": 8, "co2": 1.2, "recyclable": True},
+                    {"score": 16, "co2": 1.2, "recyclable": True},
                 "not recyclable":
                     {"score": 0, "co2": 0, "recyclable": False}
                 }
