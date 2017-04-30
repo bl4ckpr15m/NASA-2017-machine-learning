@@ -56,12 +56,10 @@ class MoveImages(Task):
 
         image_path = picture.feature.path
         recyclable = picture.recyclable
-        # print("IMAGE_PATH" + image_path)
+        
         ind = image_path.rfind('/')
         name = image_path[ind+1:]
         # name = os.path.basename(image_path.picture.name)
-        # print("NAME:: " + name)
-        print(image_path)
         # Copy image to label'path
         if recyclable:
             os.system("cp " + image_path + " " + BASE_DIR + "/media/tf_files/recyclable/" + picture.label +"/" + name)
