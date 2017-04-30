@@ -59,7 +59,7 @@ class MoveImages(Task):
 
         # Copy image to label'path
         if recyclable:
-            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable + picture.label")
+            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable" + picture.label)
 
 
 class ReTrain(Task):
