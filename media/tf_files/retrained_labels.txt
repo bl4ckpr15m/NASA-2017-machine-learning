@@ -1,0 +1,4 @@
+glass
+carton
+can
+plastic

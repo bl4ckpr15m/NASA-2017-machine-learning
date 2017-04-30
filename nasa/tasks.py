@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
+import os
 from nasa.celery import app
 import tensorflow as tf
 from celery.task import Task
@@ -12,20 +13,17 @@ from ai import models
 class PredictTask(Task):
     def run(self, pk):
         picture = models.Picture.objects.get(pk=pk)
-
         print(picture.feature.path)
-        image_path =picture.feature.path
+        image_path = picture.feature.path
 
         # Read in the image_data
         image_data = tf.gfile.FastGFile(image_path, 'rb').read()
         # Loads label file, strips off carriage return
 
-        txt = BASE_DIR + "/tf_files/retrained_labels.txt"
-        label_lines = [line.rstrip() for line 
-                    in tf.gfile.GFile(txt)]
-
+        txt = BASE_DIR + "/media/tf_files/retrained_labels.txt"
+        label_lines = [line.rstrip() for line in tf.gfile.GFile(txt)]
         # Unpersists graph from file
-        pb = BASE_DIR + "/tf_files/retrained_graph.pb"
+        pb = BASE_DIR + "/media/tf_files/retrained_graph.pb"
         with tf.gfile.FastGFile(pb, 'rb') as f:
             graph_def = tf.GraphDef()
             graph_def.ParseFromString(f.read())
@@ -52,7 +50,35 @@ class PredictTask(Task):
         picture.save()
 
 
+class MoveImages(Task):
+    def run(self, pk):
+        picture = models.Picture.objects.get(pk=pk)
+
+        image_path = picture.feature.path
+        recyclable = picture.feature.recyclable
+
+        # Copy image to label'path
+        if recyclable:
+            os.system("cp " + image_path + " " + "BASE_DIR + /tf_files/recyclable + picture.feature.label")
+
+
+class ReTrain(Task):
+    def run(self):
+        # Necessary, execute docker run --name what-i-want -it ......
+        name = "nasatf"
+        comm = "python /tensorflow/tensorflow/examples/image_retraining/retrain.py \
+        --bottleneck_dir=/tf_files/bottlenecks \
+        --how_many_training_steps 500 \
+        --model_dir=/tf_files/inception \
+        --output_graph=/tf_files/retrained_graph.pb \
+        --output_labels=/tf_files/retrained_labels.txt \
+        --image_dir /tf_files/recyclable"
+        os.system("docker exec -it " + name + " " + comm)
+
+
 app.tasks.register(PredictTask)
+app.tasks.register(MoveImages)
+app.tasks.register(ReTrain)
 
 
 @app.task(trail=True)
