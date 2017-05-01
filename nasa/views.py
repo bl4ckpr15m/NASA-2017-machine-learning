@@ -37,7 +37,6 @@ class PictureViewSet(viewsets.ModelViewSet):
         picture.feature.save(file_name, f, save=True)
 
         image_path = picture.feature.path
-        print(image_path)
 
         # Read in the image_data
         image_data = tf.gfile.FastGFile(image_path, 'rb').read()

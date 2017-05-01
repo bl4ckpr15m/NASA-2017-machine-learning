@@ -12,8 +12,8 @@ router.register(r'picture', PictureViewSet, 'Picture')
 
 urlpatterns = [
         url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-        url(r'^', include(router.urls, namespace='api')),
         url(r'^admin/', admin.site.urls, name='admin'),
+        url(r'^', include(router.urls, namespace='api')),
         ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
