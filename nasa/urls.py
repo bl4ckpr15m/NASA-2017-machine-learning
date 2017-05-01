@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.conf.urls import include
 from rest_framework import routers
-from nasa.views import PictureViewSet
+from ai.views import PictureViewSet
 
 
 router = routers.DefaultRouter()

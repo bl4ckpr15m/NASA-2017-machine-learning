@@ -3,7 +3,7 @@ from django.db import models
 
 class Picture(models.Model):
     feature = models.ImageField(upload_to="raw/")
-    label = models.CharField(max_length=240, blank=True, null=True)
+    label = models.CharField(max_length=240)
     score = models.IntegerField(default=0)
     co2 = models.FloatField(blank=True, null=True)
     recyclable = models.BooleanField(default=False)
