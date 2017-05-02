@@ -26,9 +26,7 @@ INSTALLED_APPS = [
 
         'rest_framework',
         'import_export',
-        'crispy_forms',
         'djcelery',
-        'emoji',
         'ai',
         ]
 
