@@ -2,8 +2,8 @@
 The only thing you need to test our app is an Android device with Android lollipop or higher version installed. Download our [last signed apk](https://github.com/TheGreatGatsvim/NASA-April-2017-Android2.0/releases/download/1.0/app-release.apk) and get fun.
 ## MENU
 * [The idea](https://github.com/TheGreatGatsvim/NASA-April-2017#the-idea)
-  * [How is it works?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-works?)
-  * [How is it build?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-build?)
+  * [How is it works?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-works)
+  * [How is it build?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-build)
   * [The future](https://github.com/TheGreatGatsvim/NASA-April-2017#the-future)
 * [Prerequisites](https://github.com/TheGreatGatsvim/NASA-April-2017#prerequisites)
 * [Install](https://github.com/TheGreatGatsvim/NASA-April-2017#install)
