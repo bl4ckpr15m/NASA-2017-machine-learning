@@ -2,8 +2,8 @@
 The only thing you need to test our app is an Android device with Android lollipop or higher version installed. Download our [last signed apk](https://github.com/TheGreatGatsvim/NASA-April-2017-Android2.0/releases/download/1.0/app-release.apk) and get fun.
 ## MENU
 * [The idea](https://github.com/TheGreatGatsvim/NASA-April-2017#the-idea)
-  * [How is it works?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-works)
-  * [How is it build?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-is-it-build)
+  * [How does it work?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-does-it-work)
+  * [How do we build it?](https://github.com/TheGreatGatsvim/NASA-April-2017#how-do-we-build-it)
   * [The future](https://github.com/TheGreatGatsvim/NASA-April-2017#the-future)
 * [Prerequisites](https://github.com/TheGreatGatsvim/NASA-April-2017#prerequisites)
 * [Install](https://github.com/TheGreatGatsvim/NASA-April-2017#install)
@@ -15,12 +15,12 @@ The only thing you need to test our app is an Android device with Android lollip
 
 ## The idea
 
-### How is it works?
+### How does it work?
 As soon as you open the app you will see your score. When you will scan a new element, depending on what kind of material is it made of, you will get a different score. The manufacture of plastic emit more CO2 than the manufacture of paperboard, in this case you will get a higger score if you recycle plastic than if you recycle paperboard.
 
 If you don't know if a particular object can be recyclabled you can scan it with our app and you will see if it is or it isn't. Also, if it is recyclable, you will see he color of the container were the object must be recycle. 
 
-### How is it build?
+### How do we build it?
 We are aware that are more smartphones connected to the internet than computers, so we decided to create a native app for Android. However this is not the final project. We buld an API so in the future we could build an IOS app, web app or even a robotic arm to help companies to recycle.
 
 First we need the power of an artificial intelligence, we wanted this AI learn and become smarter. A great start point is [Tensorflow](https://www.tensorflow.org/), our server is build in python3 with [django](https://www.djangoproject.com/), great news becaise Tensorflow run in python.
